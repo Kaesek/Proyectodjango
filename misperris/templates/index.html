@@ -1,0 +1,124 @@
+{% extends "./base.html" %}
+
+{% block title %}Fundacion MisPerris{% endblock %}
+{% load static %}
+    <link href="{% static '/index.css' %}" rel="stylesheet" />
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <script
+      src="https://kit.fontawesome.com/d371e58988.js"
+      crossorigin="anonymous"
+    ></script>
+{% block body %}
+    <div id="fondo">
+      <div class="row" id="centradocarrusel">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div id="conteitemscarrusel">
+            <div class="itemcarrusel" id="itemcarrusel1">
+              <div class="targetacarrusel" id="targetacarrusel1">
+                <img src="{% static '/img/apolo.jpg' %}" alt="" />
+              </div>
+              <div class="flechacarrusel">
+                <a href="#itemcarrusel3">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a href="#itemcarrusel2">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="itemcarrusel" id="itemcarrusel2">
+              <div class="targetacarrusel" id="targetacarrusel2">
+                <img src="{% static '/img/tom.jpg' %}" alt="" />
+              </div>
+              <div class="flechacarrusel">
+                <a href="#itemcarrusel1">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a href="#itemcarrusel3">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="itemcarrusel" id="itemcarrusel3">
+              <div class="targetacarrusel" id="targetacarrusel3">
+                <img src="{% static '/img/duque.jpg' %}" alt="" />
+              </div>
+              <div class="flechacarrusel">
+                <a href="#itemcarrusel2">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <a href="#itemcarrusel1">
+                  <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div id="contepuntocarrusel">
+            <a href="#itemcarrusel1"> <i class="fa-solid fa-dog"></i> </a>
+
+            <a href="#itemcarrusel2"> <i class="fa-solid fa-dog"></i> </a>
+
+            <a href="#itemcarrusel3"> <i class="fa-solid fa-dog"></i> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="fondo2">
+      <div class="row" id="inf1">
+        <h1>RESCATE</h1>
+        <p style="font-size: 20px">ETAPA UNO</p>
+        <p id="inforescate">
+          Rescatamos perros en situacion de peligro y/o abandono, los
+        </p>
+        <p id="inforescate">
+          rehabilitamos para buscarles un hogar.
+          <br />
+          <br />
+          <img src="{% static '/img/imgrescate.png' %}" id="imgrescate" />
+          <br />
+          <br />
+          <img src="{% static '/img/crowfunding.jpg' %}" id="imgcrown" />
+        </p>
+
+        <h1 id="tit">Crowdfunding</h1>
+        <p id="fina">FINANCIAMIENTO</p>
+        <p id="infcrowd">
+          Sigue nuestras redes sociales para informarte acerca de las diversas
+          campañas y actividades que realizamos para obtener financiamiento para
+          seguir ayudando.
+        </p>
+        <br />
+        <br />
+
+        <div class="row" id="btn">
+          <div class="col-1">
+            <button>CAMPAÑAS</button>
+          </div>
+
+          <div class="row">
+            <div
+              class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+              style="text-align: center"
+            >
+              <button id="btngaleria">
+                <a href="Galeriaperros.html">Galeria de nuestros perros</a>
+              </button>
+            </div>
+            <div
+              class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+              style="text-align: center"
+            >
+              <button id="btnformu">
+                <a href="formulario.html">Adopta tu mascota</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="alertas.js"></script>

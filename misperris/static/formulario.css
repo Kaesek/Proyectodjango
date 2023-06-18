@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  float: center;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+label {
+  clear: both;
+  float: center;
+  font-size: 15px;
+  color: white;
+  width: 180px;
+}
+
+button {
+  clear: both;
+  float: center;
+  width: 150px;
+  color: black;
+}
+
+.error-control {
+  border: 1px solid red;
+}
+
+label.error {
+  color: red;
+  width: 300px;
+  font-size: 0.8em;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+#fondo {
+  background-color: #7f00b2;
+}
+
+#fondoprincipio {
+  background-color: #00cbcc;
+}
+
+#letrainicio {
+  color: white;
+  font-size: 20px;
+}
+
+#tituloformulario {
+  color: white;
+}
+
+a {
+  color: white;
+}
+#banner {
+  font-size: 21px;
+}

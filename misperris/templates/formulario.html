@@ -1,0 +1,93 @@
+{% extends "./base.html" %}
+{% block title %} Formulario {% endblock %}
+{% block body %}
+<style>
+  body {
+      background-color: #7f00b2;
+  }
+</style>
+    <div class="row" id="fondo">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <center>
+          <form action="/formularioCarga/" name="formulario" method="POST">
+            {% csrf_token %}
+            <br /><br />
+            <h1 id="tituloformulario">FORMULARIO POSTULANTE ADOPCION</h1>
+            <br /><br />
+            <label>Ingrese su email</label>
+            <input
+              type="email"
+              name="email" 
+              id="email"
+              maxlength="30"
+              placeholder="nombre@dominio.cl"
+              required=""
+            />
+            <br /><br />
+            <label>Ingrese su RUT </label>
+            <input
+              type="text"
+              name="rut"
+              id="rut"
+              maxlength="12"
+              placeholder="Ingrese su RUT"
+              required=""
+            />
+            <br /><br />
+            <label>Ingrese su Nombre completo </label>
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              maxlength="50"
+              placeholder="Ingrese su Nombre Completo"
+              required=""
+            />
+            <br /><br />
+            <label>Fecha de Nacimiento </label>
+            <input
+              type="date"
+              min="1900-01-01"
+              max="2023-12-31"
+              required=""
+              name="fecha_nacimiento"
+              id="fecha_nacimiento"
+            />
+            <br /><br />
+            <label>Telefono Contacto (9xxxxxxxx)</label>
+            <input
+              type="number"
+              id="contacto"
+              name="contacto"
+              minlenght="9"
+              maxlength="9"
+              required=""
+            />
+            <br /><br />
+            <label>Region </label>
+            <input type="text" id="region" name="region" required="" />
+            <br /><br />
+            <label>Comuna </label>
+            <input type="text" id="comuna" name="comuna" required="" />
+            <br> </br>
+            <script type="text/javascript" src="funciones.js"></script>
+            <label>Tipo Vivienda</label>
+            <select id ="tipo_vivienda" name="tipo_vivienda">
+              <option>Seleccione tipo vivienda</option>
+              <option>Casa con patio grande</option>
+              <option>Casa con patio chico</option>
+              <option>Casa sin patio</option>
+              <option>Departamento</option>
+            </select>
+            <br /><br />
+            <input onclick="alertaenviar()" type="submit" name="enviar" />
+          </form>
+        </center>
+      </div>
+    </div>
+    <script>
+      function alertaenviar() {
+        return confirm("¿Estás seguro de enviar el formulario?");
+      }
+    </script>
+{% endblock %}

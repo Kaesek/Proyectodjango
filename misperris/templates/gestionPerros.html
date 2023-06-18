@@ -1,0 +1,69 @@
+{% extends "./base.html" %}
+
+{% block title %}Gestion de Perritos {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+        <h2>Añadir un Perrito</h2>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/registrarPerros/">{% csrf_token %}                   
+                    <div class="form-group">
+                        <input type="text" id="codigo" name="codigo" class="form-control" placeholder="codigo" minlength="3" maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="nombre" minlength="3" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="raza_predominante" name="raza_predominante" class="form-control" placeholder="raza_predominante" minlength="4" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="descripcion" minlength="0" maxlength="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="estado" name="estado" class="form-control" placeholder="estado" required>
+                          <option>Rescatado</option>
+                          <option>Disponible</option>
+                          <option>Adoptado</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-success btn-block text-white">Guardar</button> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Perritos</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Raza Predominante</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th colspan="">Opciones</th>
+                    </tr>
+                    <tbody>
+                        {% for p in perros %}
+                        <tr>
+                            <th>{{p.codigo}}</th>
+                            <th>{{p.nombre}}</th>
+                            <th>{{p.raza_predominante}}</th>
+                            <th>{{p.descripcion}}</th>
+                            <th>{{p.estado}}</th>
+                            <td><a href="edicionPerros/{{ p.codigo }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="eliminarPerros/{{ p.codigo }}" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
