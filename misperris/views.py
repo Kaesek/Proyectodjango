@@ -11,17 +11,18 @@ def registrarPerros(request):
     nombre = request.POST['nombre']
     raza_predominante = request.POST['raza_predominante']
     descripcion = request.POST['descripcion']
+    imagen = request.FILES['imagen']
     estado = request.POST['estado']
 
     perros = Lista_perros.objects.create(
-       codigo = codigo, nombre = nombre, raza_predominante=raza_predominante, descripcion=descripcion, estado=estado
+       codigo = codigo, nombre = nombre, raza_predominante=raza_predominante, descripcion=descripcion, imagen=imagen ,estado=estado
     )
-    return redirect('/')
+    return redirect('gestionPerros')
 
 def eliminarPerros(request, codigo):
     perros = Lista_perros.objects.get(codigo = codigo)
     perros.delete()
-    return redirect('/')
+    return redirect('gestionPerros')
 
 def edicionPerros(request, codigo):
     perros = Lista_perros.objects.get(codigo = codigo)
@@ -40,7 +41,7 @@ def editarPerros(request):
     perros.descripcion = descripcion
     perros.estado = estado
     perros.save()
-    return redirect('/')
+    return redirect('gestionPerros')
 
 def formulario(request):
     return render(request, 'formulario.html')
