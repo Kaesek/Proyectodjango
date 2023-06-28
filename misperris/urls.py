@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView,logout_then_login
+
 from django.urls import path
 from . import views
 from django.conf import settings
@@ -6,16 +6,17 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('inicio/', views.home,),
-    path('index/', views.index, name= 'index'),
-    path('gestionPerros/',views.gestionPerros, name='gestionPerros'),
+    path('', views.index, name= 'index'),
+    path('misperris/gestionPerros/',views.gestionPerros, name='gestionPerros'),
     path('registrarPerros/', views.registrarPerros),
     path('edicionPerros/<codigo>', views.edicionPerros, name='edicionPerros'),
     path('editarPerros/', views.editarPerros),
     path('eliminarPerros/<codigo>', views.eliminarPerros, name='eliminarPerros'),
-    path('formulario/', views.formulario, name='formulario'),
+    path('misperris/formulario/', views.formulario, name='formulario'),
     path('formularioCarga/', views.formularioCarga),
-    path('',LoginView.as_view(template_name='login.html'), name = 'login')
+    path('misperris/success/', views.success, name= 'success'),
+    path('logout/', views.exit, name='exit'),
+    path('register/', views.register, name='register'),
 ] 
 
 if settings.DEBUG:

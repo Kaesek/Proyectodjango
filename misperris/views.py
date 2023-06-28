@@ -1,10 +1,49 @@
 from django.shortcuts import render, redirect
 from .models import Postulante
 from .models import Lista_perros
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CreacionUsuarioCustom
+
+
 # Create your views here.
-def home(request):
-    perrosLista = Lista_perros.objects.all()
-    return render(request, 'gestionPerros.html', {"perros": perrosLista})
+def register(request):
+    data = {
+        'form': CreacionUsuarioCustom()
+    }
+
+    if request.method == 'POST':
+        user_creation_form = CreacionUsuarioCustom(data=request.POST)
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+
+            user = authenticate(username = user_creation_form.cleaned_data['username'], password = user_creation_form.cleaned_data['password1'])
+            login(request, user)
+            return redirect('index')
+    return render(request, 'registration/register.html', data)
+
+def success(request):
+    return render(request, 'misperris/success.html')
+@login_required
+def gestionPerros(request):
+    perro = Lista_perros.objects.all()
+    return render(request, 'misperris/gestionPerros.html', {'perros': perro})
+
+def exit(request):
+    logout(request)
+    return redirect('index')
+#@login_required
+#def admin_view(request):
+    #if request.user is not None:
+     #   if(request.user.is_superuser):
+      #      lista = Lista_perros.objects.all()
+       #     context = {'lista': lista}
+        #    return render(request, 'gestionPerros.html', context)
+        #else:
+         #   return render(request, 'login.html')
+    #else:
+     #   return render(request, 'login.html')   #
 
 def registrarPerros(request):
     codigo = request.POST['codigo']
@@ -19,6 +58,7 @@ def registrarPerros(request):
     )
     return redirect('gestionPerros')
 
+
 def eliminarPerros(request, codigo):
     perros = Lista_perros.objects.get(codigo = codigo)
     perros.delete()
@@ -26,7 +66,8 @@ def eliminarPerros(request, codigo):
 
 def edicionPerros(request, codigo):
     perros = Lista_perros.objects.get(codigo = codigo)
-    return render(request, 'edicionPerros.html', {"perros": perros})
+    return render(request, 'misperris/edicionPerros.html', {"perros": perros})
+
 
 def editarPerros(request):
     codigo = request.POST['codigo']
@@ -44,8 +85,7 @@ def editarPerros(request):
     return redirect('gestionPerros')
 
 def formulario(request):
-    return render(request, 'formulario.html')
-
+    return render(request, 'misperris/formulario.html')
 
 def formularioCarga(request):
     correo = request.POST['email']
@@ -60,13 +100,9 @@ def formularioCarga(request):
     postulante = Postulante.objects.create(
        correo = correo, rut = rut, nombre = nombre, fecha_nacimiento = fecha_nacimiento, telefono = telefono, region = region, comuna = comuna, vivienda = vivienda
     )
-    return redirect('/')
-
-
-def gestionPerros(request):
-    perro = Lista_perros.objects.all()
-    return render(request, 'gestionPerros.html', {'perros': perro})
+    return redirect('success')
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'misperris/index.html')
+

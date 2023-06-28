@@ -1,12 +1,13 @@
 from django.db import models
 
+
 # Create your models here.
 class Postulante(models.Model):
     TIPO_VIVIENDA = [
-        (1, 'Casa con patio Grande'),
-        (2, 'Casa con Patio Pequeño'),
-        (3, 'Casa sin patio'),
-        (4, 'Departamento'),
+        ('grande', 'Casa con patio Grande'),
+        ('pequeño', 'Casa con Patio Pequeño'),
+        ('notiene', 'Casa sin patio'),
+        ('notiene1', 'Departamento'),
     ]
     correo = models.EmailField(max_length=30)
     rut = models.IntegerField()
@@ -39,4 +40,3 @@ class Lista_perros(models.Model):
         text = "{0} ({1})"
         return text.format(self.nombre, self.codigo)
 
- 

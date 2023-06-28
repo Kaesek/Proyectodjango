@@ -1,0 +1,46 @@
+{%extends "misperris/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Inicio Sesion | MisPerris{% endblock %}
+
+{% block body %}
+
+<!--Estilo para quitar bordes al login-->
+<style>
+    .card {
+        border: none;
+    }
+</style>
+<div class="container">
+    <div class="card" style="background-color: #7f00b2;">
+        <div class="card-body">
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <div class="card mx-auto" style="width: 35rem;">
+                    <div class="card-body">
+                        <!--<style>
+                            .card-title {
+                                text-align: center;
+                            }
+                        </style>-->
+                      <h5 class="card-title" text-align="center">Ingrese Credenciales</h5>
+                      {{ form | crispy }}
+                      <!--<style>
+                        /* Cambiar el color de fuente para los campos de formulario */
+                        .form-label{
+                          color: black; /* Color de fuente deseado */
+                        }
+                      </style>-->
+                      <br>
+                        <div>
+                            <button type="sbumit" class="btn btn-success btn-flat btn-block m-b-30 m-t-30">Iniciar Sesion</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>          
+</div>
+{% endblock %}
