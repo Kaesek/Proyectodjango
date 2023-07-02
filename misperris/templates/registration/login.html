@@ -4,7 +4,7 @@
 
 {% block title %}Inicio Sesion | MisPerris{% endblock %}
 
-{% block body %}
+{% block content %}
 
 <!--Estilo para quitar bordes al login-->
 <style>
@@ -15,6 +15,8 @@
 <div class="container">
     <div class="card" style="background-color: #7f00b2;">
         <div class="card-body">
+            <br>
+            <br>
             <form method="POST" class="form">
                 {% csrf_token %}
                 <div class="card mx-auto" style="width: 35rem;">
@@ -33,8 +35,8 @@
                         }
                       </style>-->
                       <br>
-                        <div>
-                            <button type="sbumit" class="btn btn-success btn-flat btn-block m-b-30 m-t-30">Iniciar Sesion</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-flat col-12">Iniciar Sesion</button>
                         </div>
                     </div>
                   </div>

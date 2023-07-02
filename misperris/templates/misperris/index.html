@@ -1,62 +1,49 @@
 {% extends "misperris/base.html" %}
-{% block title %}Fundacion MisPerris{% endblock %}
 
-{% block body %}
 {% load static %}
-    <div id="fondo">
-      <div class="row" id="centradocarrusel">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div id="conteitemscarrusel">
-            <div class="itemcarrusel" id="itemcarrusel1">
-              <div class="targetacarrusel" id="targetacarrusel1">
-                <img src="{% static '/img/apolo.jpg' %}" alt="" />
-              </div>
-              <div class="flechacarrusel">
-                <a href="#itemcarrusel3">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a href="#itemcarrusel2">
-                  <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
 
-            <div class="itemcarrusel" id="itemcarrusel2">
-              <div class="targetacarrusel" id="targetacarrusel2">
-                <img src="{% static '/img/tom.jpg' %}" alt="" />
-              </div>
-              <div class="flechacarrusel">
-                <a href="#itemcarrusel1">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a href="#itemcarrusel3">
-                  <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-            <div class="itemcarrusel" id="itemcarrusel3">
-              <div class="targetacarrusel" id="targetacarrusel3">
-                <img src="{% static '/img/duque.jpg' %}" alt="" />
-              </div>
-              <div class="flechacarrusel">
-                <a href="#itemcarrusel2">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a href="#itemcarrusel1">
-                  <i class="fa-solid fa-arrow-right"></i
-                ></a>
-              </div>
-            </div>
+{% block content %}
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'img/adoptados/Apolo.jpg' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Apolo</h5>
+            <p>Perrito Rescatado y adoptado.</p>
           </div>
-          <div id="contepuntocarrusel">
-            <a href="#itemcarrusel1"> <i class="fa-solid fa-dog"></i> </a>
-
-            <a href="#itemcarrusel2"> <i class="fa-solid fa-dog"></i> </a>
-
-            <a href="#itemcarrusel3"> <i class="fa-solid fa-dog"></i> </a>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'img/adoptados/Duque.jpg' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Duque</h5>
+            <p>Perrito Rescatado y adoptado.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'img/adoptados/Tom.jpg' %}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Tom</h5>
+            <p>Perrito Rescatado y adoptado.</p>
           </div>
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
 
     <div id="fondo2">

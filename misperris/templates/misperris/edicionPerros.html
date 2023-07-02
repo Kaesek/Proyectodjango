@@ -2,14 +2,18 @@
 
 {% block title %} Edición Registros {% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="row">
-    <div class="col-md4 offset-md-4">
-            <h2>Edicion Registros</h2>
+    <div class="col-md-4 offset-md-4">
+        <br>
+        <br>
+            <h2 class="text-center">Edicion Registros</h2>
+            <br>
+            <br>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="/editarPerros/">{% csrf_token %}                   
-                        <div class="form-group">
+                    <form method="POST" enctype="multipart/form-data">{% csrf_token %}                   
+                       <div class="form-group">
                             <input type="text" id="codigo" name="codigo" value="{{perros.codigo}}" readonly class="form-control" placeholder="codigo" minlength="3" maxlength="6" required>
                         </div>
                         <div class="form-group">
@@ -22,14 +26,17 @@
                             <input type="text" id="descripcion" name="descripcion" value="{{perros.descripcion}}" class="form-control" placeholder="descripcion" minlength="0" maxlength="1000" required>
                         </div>
                         <div class="form-group">
+                            <input type="file" id="imagen" name="imagen" placeholder="imagen" minlength="0" maxlength="1000" required>
+                        </div>
+                        <div class="form-group">
                             <select id="estado" name="estado" value="{{perros.estado}}" class="form-control" placeholder="estado" required>
                               <option>Rescatado</option>
                               <option>Disponible</option>
                               <option>Adoptado</option>
                             </select>
-                          </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn-success btn-block text-white">Guardar</button> 
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success col-12 text-white">Guardar</button> 
                         </div>
                     </form>
                 </div>

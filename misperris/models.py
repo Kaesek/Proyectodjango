@@ -29,7 +29,7 @@ class Lista_perros(models.Model):
             ('adoptado', 'Adoptado'),
             ('revision', 'revision psiquiatrica')
         ]
-    codigo = models.IntegerField(null=False, primary_key=True)
+    codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     raza_predominante = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1000)

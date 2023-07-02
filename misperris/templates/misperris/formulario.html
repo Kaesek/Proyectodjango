@@ -1,6 +1,6 @@
 {% extends "misperris/base.html" %}
 {% block title %} Formulario {% endblock %}
-{% block body %}
+{% block content %}
 <style>
   body {
       background-color: #7f00b2;
@@ -80,7 +80,8 @@
               <option>Departamento</option>
             </select>
             <br /><br />
-            <input onclick="alertaenviar()" type="submit" name="enviar" />
+            <br>
+            <button onclick="alertaenviar()" type="submit" name="enviar" class="btn btn-success col-2">Guardar</button>
           </form>
         </center>
       </div>

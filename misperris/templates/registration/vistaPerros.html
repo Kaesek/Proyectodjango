@@ -1,0 +1,23 @@
+{% extends 'misperris/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Listado Disponible para Adopción</h1>
+    <br>
+    <div class="row">
+        {% for p in animales %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card" style="width: 15rem;">
+                <img src="{{ p.imagen.url }}"  class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.nombre}}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">{{p.raza_predominante}}</li>
+                        <li class="list-group-item text-center">{{p.descripcion}}</li>
+                        <li class="list-group-item text-center">{{p.estado}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

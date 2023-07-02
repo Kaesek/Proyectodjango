@@ -10,13 +10,13 @@ urlpatterns = [
     path('misperris/gestionPerros/',views.gestionPerros, name='gestionPerros'),
     path('registrarPerros/', views.registrarPerros),
     path('edicionPerros/<codigo>', views.edicionPerros, name='edicionPerros'),
-    path('editarPerros/', views.editarPerros),
     path('eliminarPerros/<codigo>', views.eliminarPerros, name='eliminarPerros'),
     path('misperris/formulario/', views.formulario, name='formulario'),
     path('formularioCarga/', views.formularioCarga),
     path('misperris/success/', views.success, name= 'success'),
     path('logout/', views.exit, name='exit'),
     path('register/', views.register, name='register'),
+    path('misperris/quienessomos/', views.quienessomos, name='quienessomos')
 ] 
 
 if settings.DEBUG:

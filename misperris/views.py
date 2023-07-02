@@ -1,13 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from .models import Postulante
 from .models import Lista_perros
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .forms import CreacionUsuarioCustom
+from .forms import CreacionUsuarioCustom, formularioedita
+import os
 
 
 # Create your views here.
+def quienessomos(request):
+    return render(request,'misperris/quienesSomos.html')
+
 def register(request):
     data = {
         'form': CreacionUsuarioCustom()
@@ -25,14 +30,20 @@ def register(request):
 
 def success(request):
     return render(request, 'misperris/success.html')
+
 @login_required
 def gestionPerros(request):
     perro = Lista_perros.objects.all()
-    return render(request, 'misperris/gestionPerros.html', {'perros': perro})
-
+    perros = Lista_perros.objects.filter(estado='Disponible')
+    if (request.user.is_superuser):
+        return render(request, 'misperris/gestionPerros.html', {'perros': perro})
+    else:
+        return render(request, 'registration/vistaPerros.html', {'animales': perros})
+    
 def exit(request):
     logout(request)
     return redirect('index')
+
 #@login_required
 #def admin_view(request):
     #if request.user is not None:
@@ -46,7 +57,6 @@ def exit(request):
      #   return render(request, 'login.html')   #
 
 def registrarPerros(request):
-    codigo = request.POST['codigo']
     nombre = request.POST['nombre']
     raza_predominante = request.POST['raza_predominante']
     descripcion = request.POST['descripcion']
@@ -54,7 +64,7 @@ def registrarPerros(request):
     estado = request.POST['estado']
 
     perros = Lista_perros.objects.create(
-       codigo = codigo, nombre = nombre, raza_predominante=raza_predominante, descripcion=descripcion, imagen=imagen ,estado=estado
+     nombre = nombre, raza_predominante=raza_predominante, descripcion=descripcion, imagen=imagen ,estado=estado
     )
     return redirect('gestionPerros')
 
@@ -64,25 +74,25 @@ def eliminarPerros(request, codigo):
     perros.delete()
     return redirect('gestionPerros')
 
+
 def edicionPerros(request, codigo):
     perros = Lista_perros.objects.get(codigo = codigo)
-    return render(request, 'misperris/edicionPerros.html', {"perros": perros})
-
-
-def editarPerros(request):
-    codigo = request.POST['codigo']
-    nombre = request.POST['nombre']
-    raza_predominante = request.POST['raza_predominante']
-    descripcion = request.POST['descripcion']
-    estado = request.POST['estado']
-
-    perros = Lista_perros.objects.get(codigo=codigo)
-    perros.nombre = nombre
-    perros.raza_predominante = raza_predominante
-    perros.descripcion = descripcion
-    perros.estado = estado
-    perros.save()
-    return redirect('gestionPerros')
+    animal = get_object_or_404(Lista_perros, codigo = codigo)
+    if request.method == 'POST':
+        print(request.FILES.get('imagen'))
+        if request.FILES.get('imagen'):
+            if animal.imagen:
+                imagen_path = animal.imagen.path
+                if os.path.exists(imagen_path):
+                    os.remove(imagen_path)
+        form = formularioedita(request.POST, request.FILES, instance = animal)
+        if form.is_valid():
+            form.save()
+            #return render(request, 'misperris/gestionPerros/', {"perros": perros, 'form': form})
+            return redirect ('/misperris/gestionPerros/')
+    else:
+        form = formularioedita(instance=animal)
+    return render(request, 'misperris/edicionPerros.html', {"perros": perros, 'form': form})
 
 def formulario(request):
     return render(request, 'misperris/formulario.html')
